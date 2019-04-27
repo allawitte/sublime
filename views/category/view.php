@@ -149,3 +149,4 @@ use yii\helpers\Url;
         </div>
     </div>
 </div>
+$this->registerJsFile('@web/js/categories.js', ['depends' => \app\assets\AppAsset::class]);

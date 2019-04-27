@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-
+use yii\helpers\Url;
 ?>
 <div class="home home-notmain">
     <div class="home_container">
@@ -11,7 +11,7 @@
                     <div class="col">
                         <div class="home_content">
                             <div class="home_title"><?= $good['name'] ?><span>.</span></div>
-                            <div class="home_text"><p><?= $good['description'] ?></p></div>
+                            <div class="home_text"><p><?= $good['descr'] ?></p></div>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
             <!-- Product Image -->
             <div class="col-lg-6">
                 <div class="details_image">
-                    <div class="details_image_large"><img src="<?= $good['img'] ?>" alt="<?= $good['name'] ?>"><div class="product_extra product_<?= $good['status'] ?>"><a href="<?= Url::to(['category/view', 'id' => $good['category']]) ?>"><?= $good['status'] ?></a></div></div>
+                    <div class="details_image_large"><img src="/web/images/<?= $good['img'] ?>" alt="<?= $good['name'] ?>"><div class="product_extra product_<?= $good['status'] ?>"><a href="<?= Url::to(['category/view', 'id' => $good['category']]) ?>"><?= $good['status'] ?></a></div></div>
                     <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
                         <div class="details_image_thumbnail active" data-image="images/details_1.jpg"><img src="/web/images/details_1.jpg" alt=""></div>
                         <div class="details_image_thumbnail" data-image="images/details_2.jpg"><img src="/web/images/details_2.jpg" alt=""></div>
@@ -54,7 +54,7 @@
                         <span>In Stock</span>
                     </div>
                     <div class="details_text">
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit. Mauris consequat nisi ut mauris efficitur lacinia.</p>
+                        <p><?= $good['descr'] ?></p>
                     </div>
 
                     <!-- Product Quantity -->
@@ -90,7 +90,7 @@
                     <div class="description_title">Description</div>
                 </div>
                 <div class="description_text">
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit. Mauris consequat nisi ut mauris efficitur lacinia.</p>
+                    <p><?= $good['descr'] ?></p>
                 </div>
             </div>
         </div>
@@ -154,4 +154,6 @@
         </div>
     </div>
 </div>
-
+<?php
+$this->registerJsFile('@web/js/product.js', ['depends' => \app\assets\AppAsset::class]);
+?>
