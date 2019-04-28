@@ -67,7 +67,7 @@ use yii\helpers\Url;
                                 <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                             </div>
                         </div>
-                        <div class="button cart_button"><a href="#">Add to cart</a></div>
+                        <div class="button cart_button"><a href="#" data-id="<?= $good['id']?>" class="product-button__add">Add to cart</a></div>
                     </div>
 
                     <!-- Share -->
@@ -156,4 +156,5 @@ use yii\helpers\Url;
 </div>
 <?php
 $this->registerJsFile('@web/js/product.js', ['depends' => \app\assets\AppAsset::class]);
+$this->registerJsFile('@web/js/ajax.js', ['depends' => \app\assets\AppAsset::class]);
 ?>

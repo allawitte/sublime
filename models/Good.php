@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\data\Pagination;
 
 /**
  * This is the model class for table "good".
@@ -30,11 +31,29 @@ class Good extends \yii\db\ActiveRecord
     public function getGoodsCategories($id){
         $catGoods = Yii::$app->cache->get('category');
         if(!$catGoods){
-            $catGoods =  Good::find()->where(['category'=> $id])->asArray()->all();
+            //$catGoods =  Good::find()->where(['category'=> $id])->asArray()->all();
+            $catGoods =  Good::find()->where(['category'=> $id])->all();
             Yii::$app->cache->set('catGoods', $catGoods, 30);
         }
 
         return $catGoods;
+    }
+
+    public function getGoodsCount($id){
+        return count($this->getGoodsCategories($id));
+    }
+
+    public function getGoodCategoryByPage($id, $limit){
+        $goods = Good::find()->where(['category'=> $id]);
+        $countGoods = clone $goods;
+        $pages = new Pagination(['totalCount' => $countGoods->count(), 'pageSize' => $limit]);
+        $pages->pageSizeParam = false;
+
+        $models = $countGoods->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+        return (['pages'=>$pages, 'models'=>$models]);
     }
 
     public function getLastItems(){
@@ -44,6 +63,9 @@ class Good extends \yii\db\ActiveRecord
 
     public function getOneGood($name){
         return Good::find()->where(['link_name'=>$name])->one();
+    }
+    public function getOneGoodById($id){
+        return Good::find()->where(['id'=>$id])->one();
     }
 
     /**

@@ -31,7 +31,7 @@ use yii\helpers\Url;
 
                 <!-- Product Sorting -->
                 <div class="sorting_bar d-flex flex-md-row flex-column align-items-md-center justify-content-md-start">
-                    <div class="results">Showing <span><?= count($catGoods) ?></span> results</div>
+                    <div class="results">Showing <span><?= $total ?></span> results</div>
                     <div class="sorting_container ml-md-auto">
                         <div class="sorting">
                             <ul class="item_sorting">
@@ -69,11 +69,12 @@ use yii\helpers\Url;
 
                 </div>
                 <div class="product_pagination">
-                    <ul>
-                        <li class="active"><a href="#">01.</a></li>
-                        <li><a href="#">02.</a></li>
-                        <li><a href="#">03.</a></li>
-                    </ul>
+                    <?php
+                    //Выводим виджет с пагинацией
+                    echo \yii\widgets\LinkPager::widget([
+                        'pagination' => $pages,
+                    ]);
+                    ?>
                 </div>
 
             </div>

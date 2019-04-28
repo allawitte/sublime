@@ -185,19 +185,19 @@ $(document).ready(function()
 		if($('.product_quantity').length)
 		{
 			var incButton = $('.quantity_inc');
-			var decButton = $('.quantity_dec');
+			var decButton = $();
 
 			var originalVal;
 			var endVal;
 
-			incButton.on('click', function()
+            $('#page-content').on('click', '.quantity_inc',  function()
 			{
 				originalVal = $(this).parent().parent().find($('.quantity_input')).val();
 				endVal = parseFloat(originalVal) + 1;
 				$(this).parent().parent().find($('.quantity_input')).val(endVal);
 			});
 
-			decButton.on('click', function()
+			$('#page-content').on('click', '.quantity_dec', function()
 			{
 				originalVal = $(this).parent().parent().find($('.quantity_input')).val();
 				if(originalVal > 0)
