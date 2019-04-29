@@ -176,5 +176,4 @@ echo "</pre>";
 </div>
 <?php
 $this->registerJsFile('@web/js/cart.js', ['depends' => \app\assets\AppAsset::class]);
-$this->registerJsFile('@web/js/ajax.js', ['depends' => \app\assets\AppAsset::class]);
 ?>

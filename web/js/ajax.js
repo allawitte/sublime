@@ -86,3 +86,20 @@ function updateMenuCart(){
     text = amount.textContent == 0 ? 0 : amount.textContent+', '+sum.textContent;
     $('#cart-data').html(text);
 }
+
+$('.newsletter_button').on('click', function(e){
+    e.preventDefault();
+    email = $('.newsletter_input').val();
+
+    $.ajax({
+        url: '/subscribe/add',
+        data: {email: email},
+        type: 'GET',
+        success: function(res){
+            console.log('res', res);
+        },
+        error: function(){
+            alert('Error');
+        }
+    });
+});

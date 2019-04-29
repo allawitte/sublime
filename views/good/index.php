@@ -1,6 +1,8 @@
 <?php
 /* @var $this yii\web\View */
 use yii\helpers\Url;
+
+;
 ?>
 <div class="home home-notmain">
     <div class="home_container">
@@ -29,12 +31,21 @@ use yii\helpers\Url;
             <!-- Product Image -->
             <div class="col-lg-6">
                 <div class="details_image">
-                    <div class="details_image_large"><img src="/web/images/<?= $good['img'] ?>" alt="<?= $good['name'] ?>"><div class="product_extra product_<?= $good['status'] ?>"><a href="<?= Url::to(['category/view', 'id' => $good['category']]) ?>"><?= $good['status'] ?></a></div></div>
+                    <div class="details_image_large"><img src="/web/images/<?= $good['img'] ?>"
+                                                          alt="<?= $good['name'] ?>">
+                        <div class="product_extra product_<?= $good['status'] ?>"><a
+                                    href="<?= Url::to(['category/view', 'id' => $good['category']]) ?>"><?= $good['status'] ?></a>
+                        </div>
+                    </div>
                     <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
-                        <div class="details_image_thumbnail active" data-image="images/details_1.jpg"><img src="/web/images/details_1.jpg" alt=""></div>
-                        <div class="details_image_thumbnail" data-image="images/details_2.jpg"><img src="/web/images/details_2.jpg" alt=""></div>
-                        <div class="details_image_thumbnail" data-image="images/details_3.jpg"><img src="/web/images/details_3.jpg" alt=""></div>
-                        <div class="details_image_thumbnail" data-image="images/details_4.jpg"><img src="/web/images/details_4.jpg" alt=""></div>
+                        <div class="details_image_thumbnail active" data-image="images/details_1.jpg"><img
+                                    src="/web/images/details_1.jpg" alt=""></div>
+                        <div class="details_image_thumbnail" data-image="images/details_2.jpg"><img
+                                    src="/web/images/details_2.jpg" alt=""></div>
+                        <div class="details_image_thumbnail" data-image="images/details_3.jpg"><img
+                                    src="/web/images/details_3.jpg" alt=""></div>
+                        <div class="details_image_thumbnail" data-image="images/details_4.jpg"><img
+                                    src="/web/images/details_4.jpg" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -43,8 +54,8 @@ use yii\helpers\Url;
             <div class="col-lg-6">
                 <div class="details_content">
                     <div class="details_name"><?= $good['name'] ?></div>
-                    <?php if($good['discount']): ?>
-                    <div class="details_discount">$<?= $good['discount'] ?></div>
+                    <?php if ($good['discount']): ?>
+                        <div class="details_discount">$<?= $good['discount'] ?></div>
                     <? endif; ?>
                     <div class="details_price">$<?= $good['price'] ?></div>
 
@@ -63,11 +74,14 @@ use yii\helpers\Url;
                             <span>Qty</span>
                             <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
                             <div class="quantity_buttons">
-                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i
+                                            class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i
+                                            class="fa fa-chevron-down" aria-hidden="true"></i></div>
                             </div>
                         </div>
-                        <div class="button cart_button"><a href="#" data-id="<?= $good['id']?>" class="product-button__add">Add to cart</a></div>
+                        <div class="button cart_button"><a href="#" data-id="<?= $good['id'] ?>"
+                                                           class="product-button__add">Add to cart</a></div>
                     </div>
 
                     <!-- Share -->
@@ -110,44 +124,17 @@ use yii\helpers\Url;
             <div class="col">
 
                 <div class="product_grid">
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="/web/images/product_1.jpg" alt=""></div>
-                        <div class="product_extra product_new"><a href="categories.html">New</a></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$670</div>
+                    <?php foreach ($related as $item): ?>
+                        <!-- Product -->
+                        <div class="product">
+                            <div class="product_image"><img src="/web/images/<?= $item['img'] ?>" alt=""></div>
+                            <div class="product_extra product_<?= $item['status'] ?>"><a href="<?= Url::to(['category/view', 'id' => $item['category']]) ?>"><?= $item['status'] ?></a></div>
+                            <div class="product_content">
+                                <div class="product_title"><a href="<?= Url::to(['good/index', 'name' => $item['link_name']]) ?>"><?= $item['name'] ?></a></div>
+                                <div class="product_price">$<?= $item['price'] ?></div>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="/web/images/product_2.jpg" alt=""></div>
-                        <div class="product_extra product_sale"><a href="categories.html">Sale</a></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$520</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="/web/images/product_3.jpg" alt=""></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$710</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="/web/images/product_4.jpg" alt=""></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$330</div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
 
                 </div>
             </div>
@@ -156,5 +143,4 @@ use yii\helpers\Url;
 </div>
 <?php
 $this->registerJsFile('@web/js/product.js', ['depends' => \app\assets\AppAsset::class]);
-$this->registerJsFile('@web/js/ajax.js', ['depends' => \app\assets\AppAsset::class]);
 ?>

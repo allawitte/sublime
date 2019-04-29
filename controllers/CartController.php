@@ -15,7 +15,7 @@ class CartController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-
+        $this->layout = 'nonews.php';
         $session = Yii::$app->session;
         $session->open();
 //        $session->remove('cart');
@@ -57,6 +57,7 @@ class CartController extends \yii\web\Controller
 
     public function actionOrder()
     {
+        $this->layout = 'nonews.php';
         $session = Yii::$app->session;
         $session->open();
         //$session = $_SESSION;

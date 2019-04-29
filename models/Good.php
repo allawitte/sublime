@@ -39,6 +39,10 @@ class Good extends \yii\db\ActiveRecord
         return $catGoods;
     }
 
+    public function getRelatedGoods($name, $category){
+        return Good::find()->where(['<>', 'link_name', $name])->andWhere(['category'=>$category])->all();
+    }
+
     public function getGoodsCount($id){
         return count($this->getGoodsCategories($id));
     }

@@ -1,0 +1,1 @@
+<h3 style="text-align: center; font-size: 25px;"><a href="http://sublime/subscribe?token=<?= $token ?>" style="padding: 10px 20px; background: #2f6f9f; color: #ffffff;">Subscribe for Sublime</a></h3>

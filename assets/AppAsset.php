@@ -42,6 +42,7 @@ class AppAsset extends AssetBundle
         'web/plugins/Isotope/isotope.pkgd.min.js',
         'web/plugins/easing/easing.js',
         'web/plugins/parallax-js-master/parallax.min.js',
+        'js/ajax.js',
 //        'js/custom.js',
         //'js/cart.js',
 //        'js/categories.js',

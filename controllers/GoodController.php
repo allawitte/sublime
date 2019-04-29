@@ -10,7 +10,8 @@ class GoodController extends \yii\web\Controller
     {
         $good = new Good();
         $good = $good->getOneGood($name);
-        return $this->render('index', compact('good', 'name'));
+        $related = $good->getRelatedGoods($name, $good['category']);
+        return $this->render('index', compact('good', 'name', 'related'));
     }
 
 }
