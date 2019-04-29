@@ -15,6 +15,7 @@ use Yii;
  * @property string $address
  * @property int $sum
  * @property string $status
+ * @property int $subscribe
  */
 class Order extends \yii\db\ActiveRecord
 {
@@ -34,7 +35,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             [['date', 'name', 'email', 'phone', 'address', 'sum'], 'required'],
             [['date'], 'safe'],
-            [['sum'], 'integer'],
+            [['sum', 'subscribe'], 'integer'],
             [['status'], 'string'],
             [['name', 'email', 'phone', 'address'], 'string', 'max' => 255],
         ];
@@ -54,6 +55,7 @@ class Order extends \yii\db\ActiveRecord
             'address' => 'Address',
             'sum' => 'Sum',
             'status' => 'Status',
+            'subscribe' => 'Subscribe',
         ];
     }
 }

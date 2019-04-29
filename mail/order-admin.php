@@ -1,5 +1,7 @@
-<h3>Your order with number: <?= $order->id?></h3>
-<p>Your phone: <?= $order->phone ?></p>
+<h3>New order with number: <?= $order->id?></h3>
+<p>Name: <?= $order->name ?></p>
+<p>Phone: <?= $order->phone ?></p>
+<p>Address: <?= $order->address ?></p>
 <div class="table-responsive">
     <table class="table table-hover table-striped">
         <thead>

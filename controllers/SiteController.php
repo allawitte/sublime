@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\Contact;
 use app\models\Category;
 use app\models\Good;
 
@@ -113,14 +113,17 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
+        $contact = new Contact();
+        if ($contact->load(Yii::$app->request->post())) {
+            if($contact->save()){
+                Yii::$app->session->setFlash('contactFormSubmitted');
+            }
+
 
             return $this->refresh();
         }
         return $this->render('contact', [
-            'model' => $model,
+            'contact' => $contact,
         ]);
     }
 

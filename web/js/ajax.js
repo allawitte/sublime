@@ -87,10 +87,16 @@ function updateMenuCart(){
     $('#cart-data').html(text);
 }
 
-$('.newsletter_button').on('click', function(e){
+$('.newsletter .newsletter_button').on('click', function(e){
     e.preventDefault();
     email = $('.newsletter_input').val();
+    if(email){
+        subscribe(email);
+    }
 
+});
+
+function subscribe(email){
     $.ajax({
         url: '/subscribe/add',
         data: {email: email},
@@ -102,4 +108,4 @@ $('.newsletter_button').on('click', function(e){
             alert('Error');
         }
     });
-});
+}

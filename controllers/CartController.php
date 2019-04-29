@@ -62,7 +62,7 @@ class CartController extends \yii\web\Controller
         $session->open();
         //$session = $_SESSION;
         if (!$session['cart.totalPrice']) {
-            return $this->renderPartial('success', compact('session'));
+            return $this->render('success', compact('session'));
         }
         $order = new Order();
         if ($order->load(Yii::$app->request->post())) {
@@ -70,19 +70,32 @@ class CartController extends \yii\web\Controller
             $order->sum = $session['cart.totalPrice'];
             if ($order->save()) {
                 $session['currentId'] = $order->id;
+                $session['subscribe'] =$order->subscribe;
                 $this->saveOrderInfo($session['cart'], $session['currentId']);
                 Yii::$app->mailer->compose('order-mail', ['session' => $session, 'order' => $order])
                     ->setFrom(['allaadri.witte@gmail.com' => 'Customer service'])
                     ->setTo([$order->email])
-                    ->setSubject('Ваш заказ принят')
+                    ->setSubject('Your order is accepted')
                     ->send();
+
+                Yii::$app->mailer->compose('order-admin', ['session' => $session, 'order' => $order])
+                    ->setFrom(['allaadri.witte@gmail.com' => 'Orders Service'])
+                    ->setTo(['alla_88@inbox.lv'])
+                    ->setSubject('New order')
+                    ->send();
+                if($order->subscribe == 1){
+                    Yii::$app->mailer->compose('subscribe-mail', ['token' => $token])
+                        ->setFrom(['allaadri.witte@gmail.com' => 'Customer service'])
+                        ->setTo([$order->email])
+                        ->setSubject('Subscribe for Sublime')
+                        ->send();
+                }
                 $session->remove('cart');
                 $session->remove('cart.totalQuantity');
                 $session->remove('cart.totalPrice');
-                return $this->render('success', compact('session'));
+                return $this->render('success', compact('session', 'order'));
             }
         }
-        // $this->layout = 'empty';
         return $this->render('order', compact('session', 'order'));
 
 
