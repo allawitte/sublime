@@ -126,7 +126,7 @@ use yii\helpers\Url;
                             <div class="avds_title"><?= $categories[2]['browser_name'] ?></div>
                             <div class="avds_text"><?= $categories[2]['description'] ?></div>
                             <div class="avds_link avds_xl_link">
-                                <a href="<?= Url::to(['category/view', 'id' => $categories[2]['name']]) ?>">See
+                                <a href="<?= Url::to(['category/view', 'id' => $categories[2]['cat_name']]) ?>">See
                                     More</a></div>
                         </div>
                     </div>
