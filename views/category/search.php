@@ -3,7 +3,7 @@
 //var_dump($category['browser_name']);
 //echo "</pre>";
 use yii\helpers\Url;
-$this->title = 'sublime | '.$category['cat_name'];
+$this->title = 'sublime | search';
 ?>
 <div class="home home-notmain">
     <div class="home_container">
@@ -13,8 +13,8 @@ $this->title = 'sublime | '.$category['cat_name'];
                 <div class="row">
                     <div class="col">
                         <div class="home_content">
-                            <div class="home_title"><?= $category['browser_name']?><span>.</span></div>
-                            <div class="home_text"><p><?=$category['description']?></p></div>
+                            <div class="home_title">Search on<span>.</span></div>
+                            <div class="home_text"><p><?=$search?></p></div>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@ $this->title = 'sublime | '.$category['cat_name'];
 
                 <!-- Product Sorting -->
                 <div class="sorting_bar d-flex flex-md-row flex-column align-items-md-center justify-content-md-start">
-                    <div class="results">Showing <span><?= $total ?></span> results</div>
+                    <div class="results">Showing <span><?= count($catGoods); ?></span> results</div>
                     <div class="sorting_container ml-md-auto">
                         <div class="sorting">
                             <ul class="item_sorting">
@@ -69,14 +69,14 @@ $this->title = 'sublime | '.$category['cat_name'];
                     <?php endforeach; ?>
 
                 </div>
-                <div class="product_pagination">
-                    <?php
-                    //Выводим виджет с пагинацией
-                    echo \yii\widgets\LinkPager::widget([
-                        'pagination' => $pages,
-                    ]);
-                    ?>
-                </div>
+<!--                <div class="product_pagination">-->
+<!--                    --><?php
+//                    //Выводим виджет с пагинацией
+//                    echo \yii\widgets\LinkPager::widget([
+//                        'pagination' => $pages,
+//                    ]);
+//                    ?>
+<!--                </div>-->
 
             </div>
         </div>

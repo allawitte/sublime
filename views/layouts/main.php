@@ -109,8 +109,8 @@ $categories = $categories->getCategories();
                 <div class="row">
                     <div class="col">
                         <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
-                            <form action="#">
-                                <input type="text" class="search_input" placeholder="Search" required="required">
+                            <form action="<?= Url::to(['category/search']); ?>" method="GET">
+                                <input type="text" style="padding: 5px" placeholder="Поиск..." name="search" class="search_input">
                             </form>
                         </div>
                     </div>

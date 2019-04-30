@@ -72,6 +72,11 @@ class Good extends \yii\db\ActiveRecord
         return Good::find()->where(['id'=>$id])->one();
     }
 
+    public function getSearchResults($search){
+        $searchResults =  Good::find()->where(['like', 'name', $search])->orWhere(['like', 'descr', $search])->asArray()->all();
+        return $searchResults;
+    }
+
     /**
      * {@inheritdoc}
      */

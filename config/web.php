@@ -60,6 +60,7 @@ $config = [
             'rules' => [
                 'category/<id>' => 'category/view',
                 'good/<name>' => 'good/index',
+                'search'=>'category/search',
             ],
 
         ],
