@@ -1,6 +1,7 @@
 /**
  * Created by HP on 4/27/2019.
  */
+disableCheckout();
 $('#page-content').on('click', '.product-button__add', function(e){
     e.preventDefault();
     let quantity = $('#quantity_input').val();
@@ -11,7 +12,7 @@ $('#page-content').on('click', '.product-button__add', function(e){
         data: {id: id, quantity: quantity},
         type: 'GET',
         success: function(res){
-            console.log('res', res);
+            res = JSON.parse(res);
             let text = "0";
             if(res.amount){
                 text = res.amount + ', '+res.total;
@@ -37,6 +38,7 @@ function update(e){
                 //console.log('res', res);
                 $('#page-content').html(res);
                 updateMenuCart();
+                disableCheckout();
             },
             error: function(){
                 alert('Error');
@@ -58,6 +60,7 @@ $('#page-content').on('click', '.clear_cart_button a', function(e){
             //$('#page-content').html(res);
             $('#page-content').html(res);
             $('#cart-data').html(0);
+            disableCheckout();
 
         },
         error: function(){
@@ -69,13 +72,14 @@ $('#page-content').on('click', '.cart_info .delete-item', function(e){
     e.preventDefault();
     let id = $('.cart_info .quantity_input').data('id');
     $.ajax({
-        url: '/cart/add',
+        url: '/cart/delete',
         data: {id: id, quantity: 0},
         type: 'GET',
         success: function(res){
             console.log('res', res);
             $('#page-content').html(res);
             updateMenuCart();
+            disableCheckout();
         },
         error: function(){
             alert('Error');
@@ -87,8 +91,12 @@ function updateMenuCart(){
     amount = document.querySelector('#total-amout');
     sum = document.querySelector('.cart_total_value');
     console.log('amount', amount, 'sum', sum);
-    text = amount.textContent == 0 ? 0 : amount.textContent+', '+sum.textContent;
-    $('#cart-data').html(text);
+    if(amount){
+        text = amount.textContent == 0 ? 0 : amount.textContent+', '+sum.textContent;
+        $('#cart-data').html(text);
+    }
+
+
 }
 
 $('.newsletter .newsletter_button').on('click', function(e){
@@ -99,6 +107,23 @@ $('.newsletter .newsletter_button').on('click', function(e){
     }
 
 });
+function disableOn(e){
+    e.preventDefault();
+}
+
+function disableCheckout(){
+    let text = $('#cart-data').text();
+    link = document.querySelector('.checkout_button a');
+    if(link){
+        if(text.length < 5){
+            link.addEventListener('click', disableOn);
+        }
+        else {
+            link.removeEventListener('click', disableOn);
+        }
+    }
+
+}
 
 function subscribe(email){
     $.ajax({

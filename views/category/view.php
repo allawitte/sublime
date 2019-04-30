@@ -3,6 +3,7 @@
 //var_dump($category['browser_name']);
 //echo "</pre>";
 use yii\helpers\Url;
+$this->title = 'sublime | '.$category['cat_name'];
 ?>
 <div class="home home-notmain">
     <div class="home_container">
@@ -124,4 +125,5 @@ use yii\helpers\Url;
         </div>
     </div>
 </div>
+<?php
 $this->registerJsFile('@web/js/categories.js', ['depends' => \app\assets\AppAsset::class]);

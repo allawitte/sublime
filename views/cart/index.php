@@ -1,10 +1,7 @@
 <?php
 /* @var $this yii\web\View */
-echo "<pre>";
-//var_dump($session);
-//var_dump($_SESSION);
-//var_dump($good);
-echo "</pre>";
+
+$this->title = 'sublime | cart';
 ?>
 
 
@@ -34,7 +31,7 @@ echo "</pre>";
 
 <div class="cart_info">
     <div class="container">
-        <?php if (isset($_SESSION['cart'])): ?>
+        <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
             <div class="row">
                 <div class="col">
                     <!-- Column Titles -->
@@ -93,7 +90,7 @@ echo "</pre>";
 
             </div>
         <?php else : ?>
-            <h3>You cart is empty</h3>
+            <h3 class="text-center">You cart is empty</h3>
         <?php endif; ?>
         <div class="row row_cart_buttons">
 

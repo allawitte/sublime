@@ -32,11 +32,19 @@ class Cart
 
             }
 
-//            $_SESSION['cart.totalQuantity'] = isset($_SESSION['cart.totalQuantity']) ? $_SESSION['cart.totalQuantity'] += $quantity : $_SESSION['cart.totalQuantity'] = $quantity;
-//            $_SESSION['cart.totalPrice'] = isset($_SESSION['cart.totalPrice']) ? $_SESSION['cart.totalPrice'] += $good['price'] * $quantity : $good['price'] * $quantity;
-
         } else {
             $this->updateCart($good->id, 0);
+        }
+    }
+
+    public function deleteFromCart($id){
+        unset($_SESSION['cart'][$id]);
+        $_SESSION['cart.totalQuantity'] = 0;
+        $_SESSION['cart.totalPrice'] = 0;
+        foreach ($_SESSION['cart'] as $item){
+            $_SESSION['cart.totalQuantity'] += $item['goodQuantity'];
+            $_SESSION['cart.totalPrice'] += $item['goodQuantity'] * $item['price'];
+
         }
     }
 

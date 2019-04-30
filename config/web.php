@@ -34,9 +34,10 @@ $config = [
             // for the mailer to send real emails.
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'username' => 'allaadri.witte@gmail.com',
-                'password' => 'Annushka89!',
+                'host' => 'mail.allawitte.nl',
+                //'username' => "allawi1q@allawitte.nl",
+                'username' => "allawi1q",
+                'password' => "zUmy%evedYtY",
                 'port' => '465',
                 'encryption' => 'ssl',
             ],

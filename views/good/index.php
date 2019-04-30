@@ -1,8 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 use yii\helpers\Url;
-
-;
+$this->title = 'sublime | '.$good['name'];
 ?>
 <div class="home home-notmain">
     <div class="home_container">
