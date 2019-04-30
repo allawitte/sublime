@@ -152,10 +152,12 @@ echo "</pre>";
                     <div class="section_subtitle">Final info</div>
                     <div class="cart_total_container">
                         <ul>
-                            <li id="total-amout" style="display: none"><?= $_SESSION['cart.totalQuantity'] ?></li>
+                            <li id="total-amout" style="display: none"><?php if(isset($_SESSION['cart.totalQuantity'])){
+                                echo $_SESSION['cart.totalQuantity'];
+                                }else echo 0; ?></li>
                             <li class="d-flex flex-row align-items-center justify-content-start">
                                 <div class="cart_total_title">Subtotal</div>
-                                <div class="cart_total_value ml-auto">$<?= $_SESSION['cart.totalPrice'] ?></div>
+                                <div class="cart_total_value ml-auto"><?php if(isset($_SESSION['cart.totalPrice'])){ echo'$'.$_SESSION['cart.totalPrice'];} else echo 0; ?></div>
                             </li>
                             <li class="d-flex flex-row align-items-center justify-content-start">
                                 <div class="cart_total_title">Shipping</div>
@@ -163,7 +165,7 @@ echo "</pre>";
                             </li>
                             <li class="d-flex flex-row align-items-center justify-content-start">
                                 <div class="cart_total_title">Total</div>
-                                <div class="cart_total_value ml-auto">$<?= $_SESSION['cart.totalPrice'] ?></div>
+                                <div class="cart_total_value ml-auto"><?php if(isset($_SESSION['cart.totalPrice'])){ echo'$'.$_SESSION['cart.totalPrice'];} else echo 0; ?></div>
                             </li>
                         </ul>
                     </div>

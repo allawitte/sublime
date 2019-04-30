@@ -12,8 +12,12 @@ $('#page-content').on('click', '.product-button__add', function(e){
         type: 'GET',
         success: function(res){
             console.log('res', res);
-            $('#page-content').html(res);
-            updateMenuCart();
+            let text = "0";
+            if(res.amount){
+                text = res.amount + ', '+res.total;
+            }
+            $('#cart-data').html(text);
+
         },
         error: function(){
             alert('Error');

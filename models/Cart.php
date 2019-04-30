@@ -27,8 +27,8 @@ class Cart
             $_SESSION['cart.totalQuantity'] = 0;
             $_SESSION['cart.totalPrice'] = 0;
             foreach ($_SESSION['cart'] as $item){
-                $_SESSION['cart.totalQuantity'] += $item[goodQuantity];
-                $_SESSION['cart.totalPrice'] += $item[goodQuantity] * $item['price'];
+                $_SESSION['cart.totalQuantity'] += $item['goodQuantity'];
+                $_SESSION['cart.totalPrice'] += $item['goodQuantity'] * $item['price'];
 
             }
 

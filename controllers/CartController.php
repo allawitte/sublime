@@ -33,7 +33,13 @@ class CartController extends \yii\web\Controller
 //        $session->remove('cart');
         $cart = new Cart();
         $cart->addToCart($good, $quantity);
-        return $this->renderPartial('index', compact('session'));
+        if(isset($session['cart.totalQuantity'])){
+            $res = ['amount'=>$session['cart.totalQuantity'], 'total'=>$session['cart.totalPrice']];
+        }
+        else {
+            $res = "0";
+        }
+        return json_encode($res);
     }
 
     public function actionUpdate($id, $quantity)
@@ -84,6 +90,7 @@ class CartController extends \yii\web\Controller
                     ->setSubject('New order')
                     ->send();
                 if($order->subscribe == 1){
+                    $token = substr(md5(uniqid()), 0, 32);
                     Yii::$app->mailer->compose('subscribe-mail', ['token' => $token])
                         ->setFrom(['allaadri.witte@gmail.com' => 'Customer service'])
                         ->setTo([$order->email])
