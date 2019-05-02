@@ -27,13 +27,7 @@ class Cart
                 'price' => $good['price'],
                 'img' => $good['img'],
             ];
-            $_SESSION['cart.totalQuantity'] = 0;
-            $_SESSION['cart.totalPrice'] = 0;
-            foreach ($_SESSION['cart'] as $item){
-                $_SESSION['cart.totalQuantity'] += $item['goodQuantity'];
-                $_SESSION['cart.totalPrice'] += $item['goodQuantity'] * $item['price'];
-
-            }
+            $this->recalculate();
 
         } else {
             $this->updateCart($good->id, 0);
@@ -42,13 +36,7 @@ class Cart
 
     public function deleteFromCart($id){
         unset($_SESSION['cart'][$id]);
-        $_SESSION['cart.totalQuantity'] = 0;
-        $_SESSION['cart.totalPrice'] = 0;
-        foreach ($_SESSION['cart'] as $item){
-            $_SESSION['cart.totalQuantity'] += $item['goodQuantity'];
-            $_SESSION['cart.totalPrice'] += $item['goodQuantity'] * $item['price'];
-
-        }
+        $this->recalculate();
         if($_SESSION['cart.totalQuantity'] == 0) {
             unset($_SESSION['cart.totalQuantity']);
             unset($_SESSION['cart.totalPrice']);
@@ -70,10 +58,26 @@ class Cart
 
     }
 
+    public function updateGood($id, $quantity){
+        $_SESSION['cart'][$id]['goodQuantity'] = $quantity;
+        $this->recalculate();
+
+    }
+
     public function clearCart(){
         unset($_SESSION['cart']);
         unset($_SESSION['cart.totalPrice']);
         unset($_SESSION['cart.totalQuantity']);
+    }
+
+    private function recalculate(){
+        $_SESSION['cart.totalQuantity'] = 0;
+        $_SESSION['cart.totalPrice'] = 0;
+        foreach ($_SESSION['cart'] as $item){
+            $_SESSION['cart.totalQuantity'] += $item['goodQuantity'];
+            $_SESSION['cart.totalPrice'] += $item['goodQuantity'] * $item['price'];
+
+        }
     }
 
 }

@@ -48,7 +48,27 @@ function update(e){
 
 }
 $('#page-content').on('change', '.quantity_input', update);
-$('#page-content').on('click', '.cart_info .quantity_control',update);
+$('#page-content').on('click', '.cart_info .quantity_control', function(){
+    setTimeout(function(){
+        let quantity = $('.cart_info .quantity_input').val();
+        let id = $('.cart_info .quantity_input').data('id');
+        console.log('update', id, quantity);
+        $.ajax({
+            url: '/cart/updategood',
+            data: {id: id, quantity: quantity},
+            type: 'GET',
+            success: function(res){
+                //console.log('res', res);
+                $('#page-content').html(res);
+                updateMenuCart();
+                disableCheckout();
+            },
+            error: function(){
+                alert('Error');
+            }
+        });
+    }, 100);
+});
 
 $('#page-content').on('click', '.clear_cart_button a', function(e){
     console.log('clear');
@@ -98,7 +118,7 @@ function updateMenuCart(){
     sum = document.querySelector('.cart_total_value');
     console.log('amount', amount, 'sum', sum);
     if(amount){
-        text = amount.textContent == 0 ? 0 : amount.textContent+', $'+sum.textContent;
+        text = amount.textContent == 0 ? 0 : amount.textContent+', '+sum.textContent;
         console.log('text', text);
         $('#cart-data').html(text);
     }

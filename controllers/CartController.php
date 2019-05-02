@@ -52,6 +52,16 @@ class CartController extends \yii\web\Controller
         return json_encode($res);
     }
 
+    public function actionUpdategood($id, $quantity)
+    {
+        $session = Yii::$app->session;
+        $session->open();
+        $cart = new Cart();
+        $cart->updateGood($id, $quantity);
+        return $this->renderPartial('index', compact('session'));
+    }
+
+
     public function actionUpdate($id, $quantity)
     {
         $session = Yii::$app->session;
