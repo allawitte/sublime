@@ -48,11 +48,12 @@ function update(e){
 
 }
 $('#page-content').on('change', '.quantity_input', update);
-$('#page-content').on('click', '.cart_info .quantity_control', function(){
+$('#page-content').on('click', '.cart_info .quantity_control', function(e){
     setTimeout(function(){
-        let quantity = $('.cart_info .quantity_input').val();
-        let id = $('.cart_info .quantity_input').data('id');
-        console.log('update', id, quantity);
+        //input = e.target.querySelector('input');
+        input = e.target.parentElement.parentElement.querySelector('input');
+        quantity = input.value;
+        id = input.dataset.id;
         $.ajax({
             url: '/cart/updategood',
             data: {id: id, quantity: quantity},
