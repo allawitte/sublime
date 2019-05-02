@@ -144,13 +144,13 @@ function disableCheckout(){
     if(link){
         if(text.length < 7){
             link.addEventListener('click', disableOn);
-            $('.continue_shopping_button').hide();
+            $('.row.row_extra').hide();
             $('.clear_cart_button').hide();
         }
         else {
             link.removeEventListener('click', disableOn);
-            $('.continue_shopping_button').show();
-            $('.clear_cart_button').show();
+            $('.row.row_extra').show();
+            $('.clear_cart_button').hide();
         }
     }
 

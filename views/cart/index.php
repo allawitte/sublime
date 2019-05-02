@@ -90,12 +90,10 @@ $this->title = 'sublime | cart';
 
             </div>
         <?php else : ?>
-            <h3 class="text-center">You cart is empty</h3>
-        <?php endif; ?>
         <div class="row row_cart_buttons">
-
             <div class="col">
                 <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                    <h3 style="margin: 69px 60px 0 0">You cart is empty</h3>
                     <div class="button continue_shopping_button newsletter_button"><a href="/category">Continue
                             shopping</a></div>
                     <div class="cart_buttons_right ml-lg-auto">
@@ -104,6 +102,7 @@ $this->title = 'sublime | cart';
                 </div>
             </div>
         </div>
+        <?php endif; ?>
         <div class="row row_extra">
             <div class="col-lg-4">
 

@@ -88,7 +88,7 @@ class CartController extends \yii\web\Controller
         $session->open();
         //$session = $_SESSION;
         //if (!$session['cart.totalPrice']) {
-        if (!$_SESSION['cart.totalPrice']) {
+        if (!isset($_SESSION['cart.totalPrice']) or !$_SESSION['cart.totalPrice']) {
             return $this->render('success', compact('session'));
         }
         $order = new Order();
