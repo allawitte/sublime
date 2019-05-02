@@ -18,9 +18,12 @@ class Cart
             $_SESSION['cart'] = [];
         }
         if ($quantity > 0) {
+            if(!isset($_SESSION['cart'][$good->id]['goodQuantity'])){
+                $_SESSION['cart'][$good->id]['goodQuantity'] = 0;
+            }
             $_SESSION['cart'][$good->id] = [
                 'name' => $good['name'],
-                'goodQuantity' => $quantity,
+                'goodQuantity' => $_SESSION['cart'][$good->id]['goodQuantity']+$quantity,
                 'price' => $good['price'],
                 'img' => $good['img'],
             ];
@@ -45,6 +48,11 @@ class Cart
             $_SESSION['cart.totalQuantity'] += $item['goodQuantity'];
             $_SESSION['cart.totalPrice'] += $item['goodQuantity'] * $item['price'];
 
+        }
+        if($_SESSION['cart.totalQuantity'] == 0) {
+            unset($_SESSION['cart.totalQuantity']);
+            unset($_SESSION['cart.totalPrice']);
+            unset($_SESSION['cart']);
         }
     }
 

@@ -11,6 +11,11 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php if(Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+    <div class="alert alert-success" role="alert">
+        <h3>Thank you for contacting us! Your message was sent successfully</h3>
+    </div>
+<?php endif; ?>
 
     <div class="home home-small">
         <div class="home_container">

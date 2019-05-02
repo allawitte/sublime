@@ -68,7 +68,7 @@ $categories = $categories->getCategories();
 										</svg>
                                         <div>Cart <span id="cart-data">(<?php
                                                 if(isset($_SESSION['cart'])){
-                                                    echo $_SESSION['cart.totalQuantity'].'  '.$_SESSION['cart.totalPrice'];
+                                                    echo $_SESSION['cart.totalQuantity'].',  $'.$_SESSION['cart.totalPrice'];
                                                 }
                                                 else echo "0";
                                                 ?>)</span></div>

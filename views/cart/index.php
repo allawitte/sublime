@@ -81,7 +81,7 @@ $this->title = 'sublime | cart';
                             </div>
                             <!-- Total -->
                             <div class="cart_item_total">$<?= $item['goodQuantity'] * $item['price'] ?></div>
-                            <a href="#" class="btn btn-outline-danger delete-item">&times;</a>
+                            <a href="#" class="btn btn-outline-danger delete-item" data-id="<?=$id ?>">&times;</a>
                         </div>
 
                     </div>

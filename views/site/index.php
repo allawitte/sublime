@@ -94,14 +94,17 @@ use yii\helpers\Url;
                         <!-- Product -->
                         <?php foreach ($lastGoods as $item): ?>
                             <div class="product">
-                                <div class="product_image"><img src="/web/images/<?= $item['img'] ?>"
-                                                                alt="<?= $item['name'] ?>"></div>
+                                <div class="product_image">
+                                    <a href="<?=Url::to(['good/index', 'name'=> $item['link_name']]) ?>">
+                                    <img src="/web/images/<?= $item['img'] ?>"  alt="<?= $item['name'] ?>">
+                                    </a>
+                                </div>
                                 <div class="product_extra product_<?= $item['status'] ?>"><a
-                                            href="<?= Url::to(['category/view', 'id' => $item['category']])  ?>"><?= $item['status'] ?></a>
+                                            href="<?=Url::to(['good/index', 'name'=> $item['link_name']]) ?>"><?= $item['status'] ?></a>
                                 </div>
                                 <div class="product_content">
-                                    <div class="product_title"><a
-                                                href="<?= Url::to(['category/view', 'id' => $item['category']]) ?>"><?= $item['name'] ?></a>
+                                    <div class="product_title">
+                                        <a href="<?=Url::to(['good/index', 'name'=> $item['link_name']]) ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="product_price">$<?= $item['price'] ?></div>
                                 </div>

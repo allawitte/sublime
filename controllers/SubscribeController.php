@@ -36,8 +36,8 @@ class SubscribeController extends \yii\web\Controller
         $subscription->token = $token;
         $subscription->save();
         Yii::$app->mailer->compose('subscribe-mail', ['token' => $token])
-           // ->setFrom(["allawi1q@allawitte.nl" => 'Customer service'])
-            ->setFrom(["allawi1q" => 'Customer service'])
+            ->setFrom(["customerservice@sublime.com" => 'Customer service'])
+          //  ->setFrom(["allawi1q" => 'Customer service'])
             ->setTo([$email])
             ->setSubject('Subscribe for Sublime')
             ->send();

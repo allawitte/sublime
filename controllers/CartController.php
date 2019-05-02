@@ -26,8 +26,6 @@ class CartController extends \yii\web\Controller
 
     public function actionDelete($id)
     {
-//        $good = new Good();
-//        $good = $good->getOneGoodById($id);
         $session = Yii::$app->session;
         $session->open();
 //        $session->remove('cart');
@@ -92,20 +90,20 @@ class CartController extends \yii\web\Controller
                 $session['subscribe'] =$order->subscribe;
                 $this->saveOrderInfo($session['cart'], $session['currentId']);
                 Yii::$app->mailer->compose('order-mail', ['session' => $session, 'order' => $order])
-                    ->setFrom(["allawi1q" => 'Customer service'])
+                    ->setFrom(["customerservice@sublime.com" => 'Customer service'])
                     ->setTo([$order->email])
                     ->setSubject('Your order is accepted')
                     ->send();
 
                 Yii::$app->mailer->compose('order-admin', ['session' => $session, 'order' => $order])
-                    ->setFrom(['allawi1q' => 'Orders Service'])
+                    ->setFrom(['admin@sublime.com' => 'Orders Service'])
                     ->setTo(['alla_88@inbox.lv'])
                     ->setSubject('New order')
                     ->send();
                 if($order->subscribe == 1){
                     $token = substr(md5(uniqid()), 0, 32);
                     Yii::$app->mailer->compose('subscribe-mail', ['token' => $token])
-                        ->setFrom(['allawi1q' => 'Customer service'])
+                        ->setFrom(['customerservice@sublime.com' => 'Customer service'])
                         ->setTo([$order->email])
                         ->setSubject('Subscribe for Sublime')
                         ->send();
